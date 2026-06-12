@@ -71,7 +71,7 @@ st.markdown('<div class="subtitle">Prédiction du diabète basée sur XGBoost + 
 # ─── Vérification API ──────────────────────────────────────────
 def check_api():
     try:
-        r = requests.get(f"{API_URL}/health", timeout=3)
+        r = requests.get(f"{API_URL}/health", timeout=60)
         return r.status_code == 200
     except:
         return False
@@ -80,7 +80,7 @@ api_ok = check_api()
 if api_ok:
     st.success("API connectée et opérationnelle")
 else:
-    st.error("API non disponible — lancez : uvicorn api.main:app --reload")
+    st.warning("API en cours de démarrage... Patientez 30 secondes et rechargez la page.")
     st.stop()
 
 st.markdown("---")
